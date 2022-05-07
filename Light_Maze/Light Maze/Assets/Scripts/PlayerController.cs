@@ -108,7 +108,14 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision != NextCollide)
+        if((collision.gameObject.tag.Equals("Line") && collision != NextCollide))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);//TEMPORARY
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Wall"))
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);//TEMPORARY
         }
