@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     public void ActivateWin()
     {
         WinText.enabled = true;
-        //invoke next scene
+        Invoke("ChangeToNextScene",1f);
     }
 
     public void ChangeToNextScene()
