@@ -10,12 +10,16 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Rigidbody2D rb2d;
     public GameObject Line;
+    private GameController GameCon;
     private Collider2D NextCollide;
     private Vector2 LastLineEnd;
+    private bool won = false;
+    public string CurrentScene;
     // Start is called before the first frame update
     void Start()
     {
         HasMoved = false;
+        GameCon = GameObject.Find("GameController").GetComponent<GameController>();
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -36,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckMovement()
     {
-        if (HasMoved)
+        if (HasMoved && !won)
         {
             switch (direction)
             {
@@ -56,33 +60,40 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+        else
+        {
+            rb2d.velocity = new Vector3(0, 0, 0);
+        }
     }
 
     private void CheckDirection()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && direction != 1)//Switch to up
+        if (!won)
         {
-            direction = 0;
-            HasMoved = true;
-            CreateLine();
-        }
-        else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && direction != 3)//Switch to Left
-        {
-            direction = 2;
-            HasMoved = true;
-            CreateLine();
-        }
-        else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && direction != 0)//Switch to down
-        {
-            direction = 1;
-            HasMoved = true;
-            CreateLine();
-        }
-        else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && direction != 2)//Switch to right
-        {
-            direction = 3;
-            HasMoved = true;
-            CreateLine();
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && direction != 1)//Switch to up
+            {
+                direction = 0;
+                HasMoved = true;
+                CreateLine();
+            }
+            else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && direction != 3)//Switch to Left
+            {
+                direction = 2;
+                HasMoved = true;
+                CreateLine();
+            }
+            else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && direction != 0)//Switch to down
+            {
+                direction = 1;
+                HasMoved = true;
+                CreateLine();
+            }
+            else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && direction != 2)//Switch to right
+            {
+                direction = 3;
+                HasMoved = true;
+                CreateLine();
+            }
         }
     }
     private void CreateLine()
@@ -110,14 +121,19 @@ public class PlayerController : MonoBehaviour
     {
         if((collision.gameObject.tag.Equals("Line") && collision != NextCollide))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);//TEMPORARY
+            UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag.Equals("Wall"))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);//TEMPORARY
+            UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
+        }
+        if (collision.gameObject.tag.Equals("Goal"))
+        {
+            GameCon.ActivateWin();
+            won = true;
         }
     }
 }
