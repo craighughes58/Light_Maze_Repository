@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag.Equals("Goal"))
         {
             GameCon.ActivateWin();
+            PlayerPrefs.SetInt(CurrentScene, 1);
             won = true;
         }
     }
