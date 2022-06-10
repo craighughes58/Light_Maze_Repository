@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         HasMoved = false;
+        direction = -1;
         GameCon = GameObject.Find("GameController").GetComponent<GameController>();
         rb2d = GetComponent<Rigidbody2D>();
     }
