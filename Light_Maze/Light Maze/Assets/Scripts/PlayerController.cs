@@ -95,6 +95,10 @@ public class PlayerController : MonoBehaviour
                 HasMoved = true;
                 CreateLine();
             }
+            else if((Input.GetKeyDown(KeyCode.Escape)))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Selection Scene");
+            }
         }
     }
     private void CreateLine()

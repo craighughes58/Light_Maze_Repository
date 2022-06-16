@@ -485,7 +485,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -713,6 +713,10 @@ PrefabInstance:
     - target: {fileID: 4732272484872502333, guid: 4bc55ec813d698e47a3c471aa504d611, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732272484872502335, guid: 4bc55ec813d698e47a3c471aa504d611, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc55ec813d698e47a3c471aa504d611, type: 3}
