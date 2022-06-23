@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 {
     public string NextSceneName;
     public Text WinText;
+    private Color lerpedColor = Color.white;
 
 
     // Start is called before the first frame update
@@ -21,12 +22,15 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //tickdown
+        lerpedColor = Color.Lerp(Color.red, Color.magenta, Mathf.PingPong(Time.time, .5f));
+        WinText.color = lerpedColor;
     }
 
     public void ActivateWin()
     {
         WinText.enabled = true;
         Invoke("ChangeToNextScene",1f);
+
     }
 
     public void ChangeToNextScene()
