@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //tickdown
-        lerpedColor = Color.Lerp(Color.red, Color.magenta, Mathf.PingPong(Time.time, .5f));
+        lerpedColor = Color.Lerp(Color.blue, Color.magenta, Mathf.PingPong(Time.time, .5f));
         WinText.color = lerpedColor;
     }
 
