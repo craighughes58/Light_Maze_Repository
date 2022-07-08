@@ -128,6 +128,12 @@ public class PlayerController : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
         }
+        if(collision.gameObject.tag.Equals("Coin"))
+        {
+            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<CoinBehaviour>().DeactivateCoin();
+            PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") + 1);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
