@@ -513,7 +513,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 313797734}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Red
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &313797734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +646,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 316846870}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Blue
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &316846870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,7 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.08727932, b: 1, a: 1}
+  m_Color: {r: 0.11765337, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1000,7 +1024,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 539465230}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pink
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &539465230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,7 +1157,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 541021511}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cyan
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &541021511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,7 +1369,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 806359629}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Green
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &806359629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,7 +1581,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 931038833}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Yellow
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &931038833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,7 +1968,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1422041083
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2266,7 +2338,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1578658205}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Magenta
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1578658205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3114,7 +3198,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2099972745}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Orange
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2099972745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3235,7 +3331,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2103343442}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 413811080}
+        m_TargetAssemblyTypeName: ShopController, Assembly-CSharp
+        m_MethodName: SetColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Purple
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2103343442
 MonoBehaviour:
   m_ObjectHideFlags: 0

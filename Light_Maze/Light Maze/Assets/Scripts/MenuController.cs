@@ -7,7 +7,11 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(PlayerPrefs.GetString("CurrentColor").Equals(""))
+        {
+            PlayerPrefs.SetString("CurrentColor", "Red");
+            PlayerPrefs.SetInt("HasRed", 1);
+        }
     }
     public void MoveScene(string name)
     {
