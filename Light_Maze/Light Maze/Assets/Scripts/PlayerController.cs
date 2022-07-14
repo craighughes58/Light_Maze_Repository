@@ -22,6 +22,45 @@ public class PlayerController : MonoBehaviour
         direction = -1;
         GameCon = GameObject.Find("GameController").GetComponent<GameController>();
         rb2d = GetComponent<Rigidbody2D>();
+
+
+       switch (PlayerPrefs.GetString("BikeColor"))
+        {
+            /*
+             *                 VendorButton.GetComponent<Image>().color = Color.red;
+                VendorButton.GetComponent<Image>().color = Color.blue;
+                VendorButton.GetComponent<Image>().color = Color.green;
+                VendorButton.GetComponent<Image>().color = new Color32(154,0,255,255);//Purple
+                VendorButton.GetComponent<Image>().color = new Color32(255,160,0,255);//Orange
+                VendorButton.GetComponent<Image>().color = Color.yellow;
+                VendorButton.GetComponent<Image>().color = new Color(0, 255, 250, 255);//cyan
+                VendorButton.GetComponent<Image>().color = Color.magenta;
+                VendorButton.GetComponent<Image>().color = new Color32(255, 100, 166, 255);//pink
+
+             */
+            case "Red":
+                gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                Line.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case "Blue":
+                break;
+            case "Green":
+                break;
+            case "Purple":
+                break;
+            case "Orange":
+                break;
+            case "Yellow":
+                break;
+            case "Cyan":
+                break;
+            case "Magenta":
+                break;
+            case "Pink":
+                break;
+
+        }
+
     }
 
     // Update is called once per frame
