@@ -11,6 +11,14 @@ public class MenuController : MonoBehaviour
         {
             PlayerPrefs.SetString("CurrentColor", "Red");
             PlayerPrefs.SetInt("HasRed", 1);
+            PlayerPrefs.SetString("BikeColor", "Red");
+        }
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            PlayerPrefs.DeleteAll();
         }
     }
     public void MoveScene(string name)

@@ -13,13 +13,10 @@ public class CoinBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        print(coinID);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     public void DeactivateCoin()
     {
         PlayerPrefs.SetInt("level" + levelNum + coinID, 1);

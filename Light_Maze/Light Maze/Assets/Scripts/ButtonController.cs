@@ -13,13 +13,6 @@ public class ButtonController : MonoBehaviour
     {
         SetButtonsActive();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void SetButtonsActive()
     {
         int last = 1;
@@ -35,7 +28,7 @@ public class ButtonController : MonoBehaviour
                 GameObject.Find("LvlBtn" + i).GetComponent<Button>().interactable = false;
             }
         }
-        if (last < 16)
+        if (last < 11)
         {
             GameObject.Find("LvlBtn" + (last)).GetComponent<Button>().interactable = true;
         }

@@ -43,20 +43,36 @@ public class PlayerController : MonoBehaviour
                 Line.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 break;
             case "Blue":
+                gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+                Line.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
                 break;
             case "Green":
+                gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                Line.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                 break;
             case "Purple":
+                gameObject.GetComponent<SpriteRenderer>().color = new Color32(154, 0, 255, 255);
+                Line.gameObject.GetComponent<SpriteRenderer>().color = new Color32(154, 0, 255, 255);
                 break;
             case "Orange":
+                gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 160, 0, 255);
+                Line.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 160, 0, 255);
                 break;
             case "Yellow":
+                gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+                Line.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
                 break;
             case "Cyan":
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 250, 255);
+                Line.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 255, 250, 255);
                 break;
             case "Magenta":
+                gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+                Line.gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
                 break;
             case "Pink":
+                gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 100, 166, 255);
+                Line.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 100, 166, 255);
                 break;
 
         }

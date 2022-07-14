@@ -10,19 +10,22 @@ public class ShopController : MonoBehaviour
     private Button ApplyButton;
     //need a current price text var
     private Text currentPriceText;
+    private Text WalletText;
     private string CurrentColor;
     // Start is called before the first frame update
     void Start()
     {
         currentPriceText = GameObject.Find("TextAMT").GetComponent<Text>();
+        WalletText = GameObject.Find("Wallet").GetComponent<Text>();
         VendorButton = GameObject.Find("SelectedColor").GetComponent<Button>();
         BuyButton = GameObject.Find("Buy").GetComponent<Button>();
         ApplyButton = GameObject.Find("Apply").GetComponent<Button>();
         SetColor("Red");
         CurrentColor = "Red";
         PlayerPrefs.SetInt("HasRed", 1);
-
         CheckPurchasedColor("HasRed");
+        WalletText.text = "WALLET: " + PlayerPrefs.GetInt("wallet");
+
 
     }
 
@@ -190,16 +193,20 @@ public class ShopController : MonoBehaviour
                     CheckPurchasedColor("HasPink");
                 }
                 break;
-
         }
+        WalletText.text = "WALLET: " + PlayerPrefs.GetInt("wallet");
     }
 
     private void CheckPurchasedColor(string PrefName)
     {
-        //"HasRed"
-        if (PlayerPrefs.GetInt(PrefName) == 1 || !PrefName.Substring(2).Equals(PlayerPrefs.GetString("BikeColor")))
+        if (PlayerPrefs.GetInt(PrefName) == 1 && !PrefName.Substring(3).Equals(PlayerPrefs.GetString("BikeColor")))
         {
             ApplyButton.interactable = true;
+            BuyButton.interactable = false;
+        }
+        else if(PrefName.Substring(3).Equals(PlayerPrefs.GetString("BikeColor")))
+        {
+            ApplyButton.interactable = false;
             BuyButton.interactable = false;
         }
         else
@@ -207,6 +214,7 @@ public class ShopController : MonoBehaviour
             ApplyButton.interactable = false;
             BuyButton.interactable = true;
         }
+       
     }
 
 
