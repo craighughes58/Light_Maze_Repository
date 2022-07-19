@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 LastLineEnd;
     private bool won = false;
     public string CurrentScene;
+    public float speedControl;
+    private bool breaks;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +89,8 @@ public class PlayerController : MonoBehaviour
         {
             FitColliderBetween(NextCollide, LastLineEnd, transform.position);
         }
+        CheckShift();
+        
     }
 
     private void FixedUpdate()
@@ -94,24 +98,45 @@ public class PlayerController : MonoBehaviour
         CheckMovement();
     }
 
+    private void CheckShift()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            breaks = true;
+        }
+        else
+        {
+            breaks = false;
+        }
+    }
+
     private void CheckMovement()
     {
+        float localSpeed;
+        if ((breaks))//timer comes later
+        {
+            localSpeed = speed / 3f;
+        }
+        else
+        {
+            localSpeed = speed;
+        }
         if (HasMoved && !won)
         {
             switch (direction)
             {
 
                 case 0://up
-                    rb2d.velocity = new Vector3(0,speed,0);
+                    rb2d.velocity = new Vector3(0,localSpeed,0);
                     break;
                 case 1://down
-                    rb2d.velocity = new Vector3(0, -speed, 0);
+                    rb2d.velocity = new Vector3(0, -localSpeed, 0);
                     break;
                 case 2://left
-                    rb2d.velocity = new Vector3(-speed, 0, 0);
+                    rb2d.velocity = new Vector3(-localSpeed, 0, 0);
                     break;
                 case 3://right
-                    rb2d.velocity = new Vector3(speed, 0, 0);
+                    rb2d.velocity = new Vector3(localSpeed, 0, 0);
                     break;
             }
 

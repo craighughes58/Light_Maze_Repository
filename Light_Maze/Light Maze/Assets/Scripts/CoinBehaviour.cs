@@ -13,7 +13,6 @@ public class CoinBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        print(coinID);
     }
 
 
