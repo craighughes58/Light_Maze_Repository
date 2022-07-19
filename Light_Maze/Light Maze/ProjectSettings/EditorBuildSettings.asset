@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Store.unity
     guid: 276a3f39665ec164b9f5a06c1a90ecd8
   - enabled: 1
+    path: Assets/Scenes/Credit Scene.unity
+    guid: 4f69d8960236c2549b64544387b55044
+  - enabled: 1
     path: Assets/Scenes/Levels/Level1.unity
     guid: 5f471fbb08bb5024a920ea4dc48e0249
   - enabled: 1
