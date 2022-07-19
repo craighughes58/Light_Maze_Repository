@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,12 +18,20 @@ public class PlayerController : MonoBehaviour
     private bool won = false;
     public string CurrentScene;
     public float speedControl;
+    public bool tutorial;
     private bool breaks;
+    private float breakTimer;
+    private GameObject BreakSlider;
     // Start is called before the first frame update
     void Start()
     {
+        breakTimer = 3f;
+        tutorial = false;
         HasMoved = false;
         direction = -1;
+        BreakSlider = GameObject.Find("BreakSlider");
+        BreakSlider.GetComponent<Slider>().maxValue = breakTimer;
+        BreakSlider.GetComponent<Slider>().value = breakTimer;
         GameCon = GameObject.Find("GameController").GetComponent<GameController>();
         rb2d = GetComponent<Rigidbody2D>();
 
@@ -89,8 +99,10 @@ public class PlayerController : MonoBehaviour
         {
             FitColliderBetween(NextCollide, LastLineEnd, transform.position);
         }
-        CheckShift();
-        
+        if(!tutorial)
+        {
+            CheckShift();
+        }
     }
 
     private void FixedUpdate()
@@ -100,9 +112,11 @@ public class PlayerController : MonoBehaviour
 
     private void CheckShift()
     {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && breakTimer > 0f && HasMoved)
         {
             breaks = true;
+            breakTimer -= Time.deltaTime;
+            BreakSlider.GetComponent<Slider>().value = breakTimer;
         }
         else
         {
