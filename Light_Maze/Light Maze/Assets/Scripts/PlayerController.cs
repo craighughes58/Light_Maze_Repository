@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         float localSpeed;
         if ((breaks))//timer comes later
         {
-            localSpeed = speed / 3f;
+            localSpeed = speed / 3f + 2f;
         }
         else
         {
@@ -235,11 +235,15 @@ public class PlayerController : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
         }
-        if (collision.gameObject.tag.Equals("Goal"))
+        if (collision.gameObject.tag.Equals("Goal") && collision.gameObject.GetComponent<SpriteRenderer>().color == Color.blue)
         {
             GameCon.ActivateWin();
             PlayerPrefs.SetInt(CurrentScene, 1);
             won = true;
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
         }
     }
 }

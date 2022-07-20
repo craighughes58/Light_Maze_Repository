@@ -14,7 +14,7 @@ public class BugController : MonoBehaviour
     {
         if(Player.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, .1f);
+            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, .07f);
         }
     }
 }
