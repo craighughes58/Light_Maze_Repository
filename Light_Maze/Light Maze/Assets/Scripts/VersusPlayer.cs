@@ -16,7 +16,6 @@ public class VersusPlayer : MonoBehaviour
     private bool won = false;
     public string CurrentScene;
     public int playerNum;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +23,14 @@ public class VersusPlayer : MonoBehaviour
         GameCon = GameObject.Find("GameController").GetComponent<VsGameController>();
         rb2d = GetComponent<Rigidbody2D>();
         CreateLine();
+        if(playerNum == 1)
+        {
+            Line.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        else
+        {
+            Line.GetComponent<SpriteRenderer>().color = Color.blue;
+        }
 
     }
 
@@ -161,10 +168,11 @@ public class VersusPlayer : MonoBehaviour
         {
             GameCon.ActivateEnd(1);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
     public void HasWonActivate()
     {
         won = true;
     }
+
 }
