@@ -95,20 +95,35 @@ public class VsGameController : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("P2Wins") >= 3 || PlayerPrefs.GetInt("P1Wins") >= 3)
         {
-            //WIN
-            print("WINNER");
+            if (PlayerPrefs.GetInt("P1Wins") >= 3 && !(PlayerPrefs.GetInt("P2Wins") >= 3))
+            {
+                WinText.text = "PLAYER 1 IS THE WINNER!";
+            }
+            else if (PlayerPrefs.GetInt("P2Wins") >= 3 && !(PlayerPrefs.GetInt("P1Wins") >= 3))
+            {
+                WinText.text = "PLAYER 2 IS THE WINNER!";
+            }
+            else
+            {
+                WinText.text = "TIE";
+            }
+            Invoke("EndGame", 2f);
+        }
+        else
+        {
+            Invoke("ResetGame", 2f);
         }
         p1ScoreText.text = PlayerPrefs.GetInt("P1Wins").ToString();
         p2ScoreText.text = PlayerPrefs.GetInt("P2Wins").ToString();
-        Invoke("ResetGame", 2f);
-        
-
-
     }
 
     private void ResetGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
+    }
+    private void EndGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("VS Select");
     }
 
 }

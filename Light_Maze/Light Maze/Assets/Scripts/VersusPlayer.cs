@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class VersusPlayer : MonoBehaviour
 {
@@ -16,10 +18,16 @@ public class VersusPlayer : MonoBehaviour
     private bool won = false;
     public string CurrentScene;
     public int playerNum;
+    public Slider SpeedSlider;
+    private float speedTime;
+    private bool isSpeeding;
+    private bool hasEnded;
     // Start is called before the first frame update
     void Start()
     {
         HasMoved = false;
+        hasEnded = false;
+        isSpeeding = false;
         GameCon = GameObject.Find("GameController").GetComponent<VsGameController>();
         rb2d = GetComponent<Rigidbody2D>();
         CreateLine();
@@ -31,6 +39,8 @@ public class VersusPlayer : MonoBehaviour
         {
             Line.GetComponent<SpriteRenderer>().color = Color.blue;
         }
+        speedTime = SpeedSlider.GetComponent<Slider>().maxValue;
+        SpeedSlider.GetComponent<Slider>().value = speedTime;
 
     }
 
@@ -41,6 +51,23 @@ public class VersusPlayer : MonoBehaviour
         if (HasMoved)
         {
             FitColliderBetween(NextCollide, LastLineEnd, transform.position);
+        }
+        CheckSpeedBoost();
+    }
+
+    private void CheckSpeedBoost()
+    {
+
+        if(((playerNum == 1 && Input.GetKey(KeyCode.LeftShift) && speedTime > 0f) || (playerNum == 2 && Input.GetKey(KeyCode.RightShift) && speedTime > 0f)) && HasMoved && !won)
+        {
+            isSpeeding = true;
+            speedTime -= Time.deltaTime;
+            SpeedSlider.GetComponent<Slider>().value = speedTime;
+
+        }
+        else
+        {
+            isSpeeding = false; 
         }
     }
     public void StartMove()
@@ -62,22 +89,28 @@ public class VersusPlayer : MonoBehaviour
 
     private void CheckMovement()
     {
+        int modifier = 0;
+        if(isSpeeding)
+        {
+            modifier = 2;
+        }
+
         if (HasMoved && !won)
         {
             switch (direction)
             {
 
                 case 0://up
-                    rb2d.velocity = new Vector3(0, speed, 0);
+                    rb2d.velocity = new Vector3(0, speed + modifier, 0);
                     break;
                 case 1://down
-                    rb2d.velocity = new Vector3(0, -speed, 0);
+                    rb2d.velocity = new Vector3(0, -speed + modifier, 0);
                     break;
                 case 2://left
-                    rb2d.velocity = new Vector3(-speed, 0, 0);
+                    rb2d.velocity = new Vector3(-speed + modifier, 0, 0);
                     break;
                 case 3://right
-                    rb2d.velocity = new Vector3(speed, 0, 0);
+                    rb2d.velocity = new Vector3(speed + modifier, 0, 0);
                     break;
             }
 
@@ -90,30 +123,30 @@ public class VersusPlayer : MonoBehaviour
 
     private void CheckDirection()
     {
-        if (!won)
+        if (!won && HasMoved)
         {
             if (((Input.GetKeyDown(KeyCode.W) && playerNum == 1) || (Input.GetKeyDown(KeyCode.UpArrow) && playerNum == 2)) && direction != 1)//Switch to up
             {
                 direction = 0;
-                HasMoved = true;
+                //HasMoved = true;
                 CreateLine();
             }
             else if (((Input.GetKeyDown(KeyCode.A) && playerNum == 1) || (Input.GetKeyDown(KeyCode.LeftArrow) && playerNum == 2)) && direction != 3)//Switch to Left
             {
                 direction = 2;
-                HasMoved = true;
+                //HasMoved = true;
                 CreateLine();
             }
             else if (((Input.GetKeyDown(KeyCode.S) && playerNum == 1) || (Input.GetKeyDown(KeyCode.DownArrow) && playerNum == 2)) && direction != 0)//Switch to down
             {
                 direction = 1;
-                HasMoved = true;
+                //HasMoved = true;
                 CreateLine();
             }
             else if (((Input.GetKeyDown(KeyCode.D) && playerNum == 1) || (Input.GetKeyDown(KeyCode.RightArrow) && playerNum == 2)) && direction != 2)//Switch to right
             {
                 direction = 3;
-                HasMoved = true;
+                //HasMoved = true;
                 CreateLine();
             }
         }
@@ -142,7 +175,7 @@ public class VersusPlayer : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.tag.Equals("Line") && collision != NextCollide))
+        if ((collision.gameObject.tag.Equals("Line") && collision != NextCollide) && !hasEnded)
         {
             EndGame();
             //UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
@@ -150,7 +183,7 @@ public class VersusPlayer : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Wall"))
+        if (collision.gameObject.tag.Equals("Wall") && !hasEnded)
         {
             EndGame();
             //UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
@@ -159,6 +192,7 @@ public class VersusPlayer : MonoBehaviour
 
     private void EndGame()
     {
+        hasEnded = true;
         CreateLine();
         if(playerNum == 1)
         {
@@ -168,7 +202,6 @@ public class VersusPlayer : MonoBehaviour
         {
             GameCon.ActivateEnd(1);
         }
-        //Destroy(gameObject);
     }
     public void HasWonActivate()
     {
