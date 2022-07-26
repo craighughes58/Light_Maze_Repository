@@ -47,6 +47,8 @@ public class VsGameController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            PlayerPrefs.SetInt("P1Wins", 0);
+            PlayerPrefs.SetInt("P2Wins",0);
             UnityEngine.SceneManagement.SceneManager.LoadScene("VS Select");
         }
     }
