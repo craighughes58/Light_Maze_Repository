@@ -22,6 +22,10 @@ public class PlayerController : MonoBehaviour
     private bool breaks;
     private float breakTimer;
     private GameObject BreakSlider;
+    public AudioClip Turn;
+    public AudioClip WinSound;
+    public AudioClip LossSound;
+    public AudioClip CoinSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -165,29 +169,33 @@ public class PlayerController : MonoBehaviour
     {
         if (!won)
         {
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && direction != 1)//Switch to up
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && direction != 1 && direction != 0)//Switch to up
             {
                 direction = 0;
                 HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
-            else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && direction != 3)//Switch to Left
+            else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && direction != 3 && direction != 2)//Switch to Left
             {
                 direction = 2;
                 HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
-            else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && direction != 0)//Switch to down
+            else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && direction != 0 && direction != 1)//Switch to down
             {
                 direction = 1;
                 HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
-            else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && direction != 2)//Switch to right
+            else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && direction != 2 && direction != 3)//Switch to right
             {
                 direction = 3;
                 HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
             else if((Input.GetKeyDown(KeyCode.Escape)))
             {
@@ -220,12 +228,15 @@ public class PlayerController : MonoBehaviour
     {
         if((collision.gameObject.tag.Equals("Line") && collision != NextCollide))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
+            Invoke("DelayEnd", .75f);
+            won = true;
+            AudioSource.PlayClipAtPoint(LossSound, Camera.main.transform.position);
         }
-        if(collision.gameObject.tag.Equals("Coin"))
+        if (collision.gameObject.tag.Equals("Coin"))
         {
             Destroy(collision.gameObject);
             collision.gameObject.GetComponent<CoinBehaviour>().DeactivateCoin();
+            AudioSource.PlayClipAtPoint(CoinSound, Camera.main.transform.position);
             PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") + 1);
         }
     }
@@ -233,17 +244,29 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.tag.Equals("Wall"))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
+            Invoke("DelayEnd", .75f);
+            won = true;
+            AudioSource.PlayClipAtPoint(LossSound, Camera.main.transform.position);
+
         }
         if (collision.gameObject.tag.Equals("Goal") && collision.gameObject.GetComponent<SpriteRenderer>().color == Color.blue)
         {
             GameCon.ActivateWin();
             PlayerPrefs.SetInt(CurrentScene, 1);
             won = true;
+            AudioSource.PlayClipAtPoint(WinSound, Camera.main.transform.position);
         }
         else
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
+            Invoke("DelayEnd", .75f);
+            won = true;
+            AudioSource.PlayClipAtPoint(LossSound, Camera.main.transform.position);
         }
     }
+
+    private void DelayEnd()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
+    }
+
 }

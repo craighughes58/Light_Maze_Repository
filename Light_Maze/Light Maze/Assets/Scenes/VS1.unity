@@ -411,6 +411,8 @@ MonoBehaviour:
   WinText: {fileID: 528074661}
   TimerStartTime: 4
   CurrentScene: VS1
+  Win: {fileID: 8300000, guid: 35e29571230226245ab2a464d387776c, type: 3}
+  MegaWin: {fileID: 8300000, guid: d1150308816fbba40ae225ace6e3feaf, type: 3}
 --- !u!1 &180113749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1011,7 @@ MonoBehaviour:
   CurrentScene: 
   playerNum: 2
   SpeedSlider: {fileID: 1705593160}
+  Turn: {fileID: 8300000, guid: 7e81a64b33c26d34c89858c399012cce, type: 3}
 --- !u!212 &925400204
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1515,6 +1518,7 @@ MonoBehaviour:
   CurrentScene: 
   playerNum: 1
   SpeedSlider: {fileID: 1394707960}
+  Turn: {fileID: 8300000, guid: 7e81a64b33c26d34c89858c399012cce, type: 3}
 --- !u!212 &1812562080
 SpriteRenderer:
   m_ObjectHideFlags: 0

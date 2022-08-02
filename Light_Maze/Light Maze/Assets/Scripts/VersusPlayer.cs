@@ -22,6 +22,7 @@ public class VersusPlayer : MonoBehaviour
     private float speedTime;
     private bool isSpeeding;
     private bool hasEnded;
+    public AudioClip Turn;
     // Start is called before the first frame update
     void Start()
     {
@@ -130,24 +131,28 @@ public class VersusPlayer : MonoBehaviour
                 direction = 0;
                 //HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
             else if (((Input.GetKeyDown(KeyCode.A) && playerNum == 1) || (Input.GetKeyDown(KeyCode.LeftArrow) && playerNum == 2)) && direction != 3)//Switch to Left
             {
                 direction = 2;
                 //HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
             else if (((Input.GetKeyDown(KeyCode.S) && playerNum == 1) || (Input.GetKeyDown(KeyCode.DownArrow) && playerNum == 2)) && direction != 0)//Switch to down
             {
                 direction = 1;
                 //HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
             else if (((Input.GetKeyDown(KeyCode.D) && playerNum == 1) || (Input.GetKeyDown(KeyCode.RightArrow) && playerNum == 2)) && direction != 2)//Switch to right
             {
                 direction = 3;
                 //HasMoved = true;
                 CreateLine();
+                AudioSource.PlayClipAtPoint(Turn, Camera.main.transform.position);
             }
         }
     }

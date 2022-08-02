@@ -102,6 +102,10 @@ MonoBehaviour:
   CurrentScene: 
   speedControl: 0
   tutorial: 0
+  Turn: {fileID: 0}
+  WinSound: {fileID: 8300000, guid: 35e29571230226245ab2a464d387776c, type: 3}
+  LossSound: {fileID: 8300000, guid: 7e04c1746ba60da4783813d7f0a3d9da, type: 3}
+  CoinSound: {fileID: 8300000, guid: 2a6a42ef4d85f6c408cb0eb5c2d58d26, type: 3}
 --- !u!50 &2225914250757586289
 Rigidbody2D:
   serializedVersion: 4

@@ -15,6 +15,8 @@ public class VsGameController : MonoBehaviour
     public string CurrentScene;
     private Text p1ScoreText;
     private Text p2ScoreText;
+    public AudioClip Win;
+    public AudioClip MegaWin;
     // Start is called before the first frame update
     void Start()
     {
@@ -90,20 +92,24 @@ public class VsGameController : MonoBehaviour
         if(Winner == 1)
         {
             PlayerPrefs.SetInt("P1Wins", PlayerPrefs.GetInt("P1Wins") + 1);
+            AudioSource.PlayClipAtPoint(Win, Camera.main.transform.position);
         }
         else
         {
             PlayerPrefs.SetInt("P2Wins", PlayerPrefs.GetInt("P2Wins") + 1);
+            AudioSource.PlayClipAtPoint(Win, Camera.main.transform.position);
         }
         if (PlayerPrefs.GetInt("P2Wins") >= 3 || PlayerPrefs.GetInt("P1Wins") >= 3)
         {
             if (PlayerPrefs.GetInt("P1Wins") >= 3 && !(PlayerPrefs.GetInt("P2Wins") >= 3))
             {
                 WinText.text = "PLAYER 1 IS THE WINNER!";
+                AudioSource.PlayClipAtPoint(MegaWin, Camera.main.transform.position);
             }
             else if (PlayerPrefs.GetInt("P2Wins") >= 3 && !(PlayerPrefs.GetInt("P1Wins") >= 3))
             {
                 WinText.text = "PLAYER 2 IS THE WINNER!";
+                AudioSource.PlayClipAtPoint(MegaWin, Camera.main.transform.position);
             }
             else
             {

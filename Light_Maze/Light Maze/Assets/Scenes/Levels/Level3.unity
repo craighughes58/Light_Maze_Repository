@@ -275,6 +275,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2225914250757586288, guid: 88a0d732f27ea2f47a9a28650982c4fd, type: 3}
+      propertyPath: Turn
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e81a64b33c26d34c89858c399012cce, type: 3}
+    - target: {fileID: 2225914250757586288, guid: 88a0d732f27ea2f47a9a28650982c4fd, type: 3}
       propertyPath: speed
       value: 8.5
       objectReference: {fileID: 0}
@@ -1114,15 +1118,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6090998101759111212, guid: 4bc55ec813d698e47a3c471aa504d611, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6090998102675740096, guid: 4bc55ec813d698e47a3c471aa504d611, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6090998102761675612, guid: 4bc55ec813d698e47a3c471aa504d611, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6090998102761675615, guid: 4bc55ec813d698e47a3c471aa504d611, type: 3}
       propertyPath: m_RootOrder
