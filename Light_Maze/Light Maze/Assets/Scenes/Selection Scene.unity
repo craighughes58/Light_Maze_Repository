@@ -991,6 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e26a021d6ef2f4caee9f88f14bfe22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ButtonNoise: {fileID: 8300000, guid: 94ff3d18016778b4aba56fdaefd76568, type: 3}
 --- !u!4 &342692381
 Transform:
   m_ObjectHideFlags: 0

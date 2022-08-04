@@ -12,6 +12,8 @@ public class ShopController : MonoBehaviour
     private Text currentPriceText;
     private Text WalletText;
     private string CurrentColor;
+    public AudioClip BuySound;
+    public AudioClip ApplySound;
     // Start is called before the first frame update
     void Start()
     {
@@ -120,8 +122,8 @@ public class ShopController : MonoBehaviour
                 case "Pink":
                     PlayerPrefs.SetString("BikeColor", "Pink");
                     break;
-
             }
+            AudioSource.PlayClipAtPoint(ApplySound, Camera.main.transform.position);
         }
         CheckPurchasedColor("Has" + CurrentColor);
     }
@@ -135,6 +137,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 1);
                     PlayerPrefs.SetInt("HasBlue", 1);
                     CheckPurchasedColor("HasBlue");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
             case "Green":
@@ -143,6 +146,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 5);
                     PlayerPrefs.SetInt("HasGreen", 1);
                     CheckPurchasedColor("HasGreen");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
             case "Purple":
@@ -151,6 +155,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 5);
                     PlayerPrefs.SetInt("HasPurple", 1);
                     CheckPurchasedColor("HasPurple");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
             case "Orange":
@@ -159,6 +164,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 6);
                     PlayerPrefs.SetInt("HasOrange", 1);
                     CheckPurchasedColor("HasOrange");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
             case "Yellow":
@@ -167,6 +173,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 7);
                     PlayerPrefs.SetInt("HasYellow", 1);
                     CheckPurchasedColor("HasYellow");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
             case "Cyan":
@@ -175,6 +182,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 8);
                     PlayerPrefs.SetInt("HasCyan", 1);
                     CheckPurchasedColor("HasCyan");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
             case "Magenta":
@@ -183,6 +191,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 8);
                     PlayerPrefs.SetInt("HasMagenta", 1);
                     CheckPurchasedColor("HasMagenta");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
             case "Pink":
@@ -191,6 +200,7 @@ public class ShopController : MonoBehaviour
                     PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 10);
                     PlayerPrefs.SetInt("HasPink", 1);
                     CheckPurchasedColor("HasPink");
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
                 }
                 break;
         }

@@ -938,6 +938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1742df8d1081aab409be43d7ddba2f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BuySound: {fileID: 8300000, guid: 11cf1d7ee9fff9648a668d9c9ffb843f, type: 3}
+  ApplySound: {fileID: 8300000, guid: 7a7004d3aa119a64ebfcbb6c4ced3934, type: 3}
 --- !u!4 &413811081
 Transform:
   m_ObjectHideFlags: 0
@@ -3169,7 +3171,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6afbb4cf16704ee44a6e1baf6d1d3ae1, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -3669,5 +3671,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1550072295599900299, guid: 44d49be22002ad1439e92755b60f9a6f, type: 3}
+      propertyPath: ButtonNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 94ff3d18016778b4aba56fdaefd76568, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d49be22002ad1439e92755b60f9a6f, type: 3}

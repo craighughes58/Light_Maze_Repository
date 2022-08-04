@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
+    public AudioClip ButtonNoise;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class MenuController : MonoBehaviour
     }
     public void MoveScene(string name)
     {
+        AudioSource.PlayClipAtPoint(ButtonNoise, Camera.main.transform.position);
         UnityEngine.SceneManagement.SceneManager.LoadScene(name);
     }
     public void QuitGame()
