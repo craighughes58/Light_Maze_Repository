@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name :         PlayerController.cs
+// Author :            Craig D. Hughes
+// Creation Date :     May 6, 2022
+//
+// Brief Description : This script handles player movement, data, and condition
+//                  
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,27 +14,48 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    //
     private bool HasMoved;
     //0 = up, 1 = down, 2 = left, 3 = right
     private int direction;
+    [Tooltip("")]
     public float speed;
+    //
     private Rigidbody2D rb2d;
+    [Tooltip("")]
     public GameObject Line;
+    //
     private GameController GameCon;
+    //
     private Collider2D NextCollide;
+    //
     private Vector2 LastLineEnd;
+    //
     private bool won = false;
+    [Tooltip("")]
     public string CurrentScene;
+    [Tooltip("")]
     public float speedControl;
+    [Tooltip("")]
     public bool tutorial;
+    //
     private bool breaks;
+    //
     private float breakTimer;
+    //
     private GameObject BreakSlider;
+    [Tooltip("")]
     public AudioClip Turn;
+    [Tooltip("")]
     public AudioClip WinSound;
+    [Tooltip("")]
     public AudioClip LossSound;
+    [Tooltip("")]
     public AudioClip CoinSound;
-    // Start is called before the first frame update
+    
+    /// <summary>
+    /// 
+    /// </summary>
     void Start()
     {
         breakTimer = 3f;
@@ -39,21 +68,10 @@ public class PlayerController : MonoBehaviour
         GameCon = GameObject.Find("GameController").GetComponent<GameController>();
         rb2d = GetComponent<Rigidbody2D>();
 
-
+       //look at the player prefs to see what the bike color is supposed to be set to
+       //then set the bike and line color to the color saved in player prefs
        switch (PlayerPrefs.GetString("BikeColor"))
         {
-            /*
-             *                 VendorButton.GetComponent<Image>().color = Color.red;
-                VendorButton.GetComponent<Image>().color = Color.blue;
-                VendorButton.GetComponent<Image>().color = Color.green;
-                VendorButton.GetComponent<Image>().color = new Color32(154,0,255,255);//Purple
-                VendorButton.GetComponent<Image>().color = new Color32(255,160,0,255);//Orange
-                VendorButton.GetComponent<Image>().color = Color.yellow;
-                VendorButton.GetComponent<Image>().color = new Color(0, 255, 250, 255);//cyan
-                VendorButton.GetComponent<Image>().color = Color.magenta;
-                VendorButton.GetComponent<Image>().color = new Color32(255, 100, 166, 255);//pink
-
-             */
             case "Red":
                 gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Line.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -95,7 +113,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// 
+    /// </summary>
     void Update()
     {
         CheckDirection();
@@ -109,11 +129,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// every fixed update the movement is called 
+    /// </summary>
     private void FixedUpdate()
     {
         CheckMovement();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void CheckShift()
     {
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && breakTimer > 0f && HasMoved)
@@ -128,6 +154,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void CheckMovement()
     {
         float localSpeed;
@@ -165,6 +194,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void CheckDirection()
     {
         if (!won)
@@ -203,6 +235,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     private void CreateLine()
     {
         LastLineEnd = transform.position;
@@ -210,6 +246,12 @@ public class PlayerController : MonoBehaviour
         NextCollide = G.GetComponent<Collider2D>();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="co"></param>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
     private void FitColliderBetween(Collider2D co, Vector2 a, Vector2 b)
     {
         co.transform.position = a + (b - a) * .5f;
@@ -224,6 +266,11 @@ public class PlayerController : MonoBehaviour
             co.transform.localScale = new Vector2(.5f, distance + .5f);
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if((collision.gameObject.tag.Equals("Line") && collision != NextCollide))
@@ -240,6 +287,11 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") + 1);
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag.Equals("Wall"))
@@ -264,6 +316,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void DelayEnd()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(CurrentScene);
