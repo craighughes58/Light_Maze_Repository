@@ -1,3 +1,13 @@
+/*****************************************************************************
+// File Name :         ShopController.cs
+// Author :            Craig D. Hughes
+// Creation Date :     July 10, 2022
+//
+// Brief Description : This script keeps track of the shop variables, methods
+//                     and current status of the store, it also takes coins
+//                     away from the user when they purchase an item
+//
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,41 +15,55 @@ using UnityEngine.UI;
 
 public class ShopController : MonoBehaviour
 {
+    //this is the reference to the button that allows you to see the current selected item up close
     private Button VendorButton;
+    //This is the reference to the button that allows you to buy items
     private Button BuyButton;
+    //this is a reference to the button that allows you to apply colors the players have purchased
     private Button ApplyButton;
     //need a current price text var
     private Text currentPriceText;
+    //This text displays how many coins the player has
     private Text WalletText;
+    //this string holds the current color that the player is
     private string CurrentColor;
+    [Tooltip("The sound when a player buys a new item")]
     public AudioClip BuySound;
+    [Tooltip("The sound when a player applies a purchased color")]
     public AudioClip ApplySound;
-    // Start is called before the first frame update
+    
+    /// <summary>
+    /// set starting values for variables
+    /// </summary>
     void Start()
     {
+        //gameobject
         currentPriceText = GameObject.Find("TextAMT").GetComponent<Text>();
         WalletText = GameObject.Find("Wallet").GetComponent<Text>();
         VendorButton = GameObject.Find("SelectedColor").GetComponent<Button>();
         BuyButton = GameObject.Find("Buy").GetComponent<Button>();
         ApplyButton = GameObject.Find("Apply").GetComponent<Button>();
+        //set starting color
         SetColor("Red");
         CurrentColor = "Red";
         PlayerPrefs.SetInt("HasRed", 1);
         CheckPurchasedColor("HasRed");
+        //set wallet text
         WalletText.text = "WALLET: " + PlayerPrefs.GetInt("wallet");
 
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /// <summary>
+    /// this method takes the color currently being viewed by the player
+    /// and sets the applied color to it
+    /// </summary>
+    /// <param name="name"></param>
     public void SetColor(string name)
     {
+        //sets the name to the current color
         CurrentColor = name;
-        switch (name)
+        switch (name)//set variables to color and update texts and buttons
         {
             case "Red":
                 CheckPurchasedColor("HasRed");
@@ -89,9 +113,14 @@ public class ShopController : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// called when the player clicks the apply button on a purchased color
+    /// if they have bought the color then their color is set to the current color
+    /// </summary>
     public void ApplyColor()
     {
-        if (PlayerPrefs.GetInt("Has" + CurrentColor) == 1)
+        if (PlayerPrefs.GetInt("Has" + CurrentColor) == 1)//if the player bought the color
         {
             switch (CurrentColor)
             {
@@ -125,19 +154,27 @@ public class ShopController : MonoBehaviour
             }
             AudioSource.PlayClipAtPoint(ApplySound, Camera.main.transform.position);
         }
+        //change current color in CheckPurchaseColor method
         CheckPurchasedColor("Has" + CurrentColor);
     }
+
+
+    /// <summary>
+    /// called from the buy color button
+    /// if the player has enough money to buy the color then variables representing the
+    /// color are set to their "purchased state"
+    /// </summary>
     public void BuyColor()
     {
         switch (CurrentColor)
         {
             case "Blue":
-                if(PlayerPrefs.GetInt("wallet") - 1 > -1 && PlayerPrefs.GetInt("HasBlue") == 0)
+                if(PlayerPrefs.GetInt("wallet") - 1 > -1 && PlayerPrefs.GetInt("HasBlue") == 0) //if they have enough money and they haven't bought the color before
                 {
-                    PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 1);
-                    PlayerPrefs.SetInt("HasBlue", 1);
-                    CheckPurchasedColor("HasBlue");
-                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);
+                    PlayerPrefs.SetInt("wallet", PlayerPrefs.GetInt("wallet") - 1);//remove coins from the wallet
+                    PlayerPrefs.SetInt("HasBlue", 1);//set player prefs to purchased state (1)
+                    CheckPurchasedColor("HasBlue");//update UI
+                    AudioSource.PlayClipAtPoint(BuySound, Camera.main.transform.position);//play sound
                 }
                 break;
             case "Green":
@@ -204,22 +241,28 @@ public class ShopController : MonoBehaviour
                 }
                 break;
         }
-        WalletText.text = "WALLET: " + PlayerPrefs.GetInt("wallet");
+        WalletText.text = "WALLET: " + PlayerPrefs.GetInt("wallet");//update wallet text to new value after purchase
     }
 
+    /// <summary>
+    /// This script checks if a player has bought a color if they have then it sets the apply color to true
+    /// otherwise it sets the buy color button to true
+    /// </summary>
+    /// <param name="PrefName">the color the method is checking</param>
     private void CheckPurchasedColor(string PrefName)
     {
+        //is the color has been bought
         if (PlayerPrefs.GetInt(PrefName) == 1 && !PrefName.Substring(3).Equals(PlayerPrefs.GetString("BikeColor")))
         {
             ApplyButton.interactable = true;
             BuyButton.interactable = false;
         }
-        else if(PrefName.Substring(3).Equals(PlayerPrefs.GetString("BikeColor")))
+        else if(PrefName.Substring(3).Equals(PlayerPrefs.GetString("BikeColor")))//is the color currently being used
         {
             ApplyButton.interactable = false;
             BuyButton.interactable = false;
         }
-        else
+        else//does the color need to be bought
         {
             ApplyButton.interactable = false;
             BuyButton.interactable = true;
