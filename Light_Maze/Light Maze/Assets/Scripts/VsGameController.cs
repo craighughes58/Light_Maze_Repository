@@ -3,11 +3,10 @@
 // Author :            Craig D. Hughes
 // Creation Date :     July 21, 2022
 //
-// Brief Description : 
+// Brief Description : This script manages players and level conditions
+//                     while also keeping score. It also resets levels
+//                     and changes scenes.
 //                     
-//                     
-//                     
-//
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
