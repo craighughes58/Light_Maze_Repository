@@ -3,9 +3,10 @@
 // Author :            Craig D. Hughes
 // Creation Date :     July 21, 2022
 //
-// Brief Description : 
-//                     
-//                     
+// Brief Description : This script is a modified version of the single
+//                     player controller that handles two versions of the
+//                     player so that they can fight eachother in the same
+//                     scene
 //
 *****************************************************************************/
 using System.Collections;
